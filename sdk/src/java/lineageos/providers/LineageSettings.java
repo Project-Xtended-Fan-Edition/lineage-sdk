@@ -1032,6 +1032,33 @@ public final class LineageSettings {
                 new InclusiveIntegerRangeValidator(5, 60);
 
         /**
+         * Whether the phone vibrates on call connect
+         * @hide
+         */
+        public static final String VIBRATE_ON_CONNECT = "vibrate_on_connect";
+
+        /** @hide */
+        public static final Validator VIBRATE_ON_CONNECT_VALIDATOR = sBooleanValidator;
+
+        /**
+         * Whether the phone vibrates on call waiting
+         * @hide
+         */
+        public static final String VIBRATE_ON_CALLWAITING = "vibrate_on_callwaiting";
+
+        /** @hide */
+        public static final Validator VIBRATE_ON_CALLWAITING_VALIDATOR = sBooleanValidator;
+
+        /**
+         * Whether the phone vibrates on disconnect
+         * @hide
+         */
+        public static final String VIBRATE_ON_DISCONNECT = "vibrate_on_disconnect";
+
+        /** @hide */
+        public static final Validator VIBRATE_ON_DISCONNECT_VALIDATOR = sBooleanValidator;
+
+        /**
          * Volume Adjust Sounds Enable, This is the noise made when using volume hard buttons
          * Defaults to 1 - sounds enabled
          */
@@ -2127,6 +2154,12 @@ public final class LineageSettings {
                     INCREASING_RING_START_VOLUME_VALIDATOR);
             VALIDATORS.put(INCREASING_RING_RAMP_UP_TIME,
                     INCREASING_RING_RAMP_UP_TIME_VALIDATOR);
+            VALIDATORS.put(VIBRATE_ON_CONNECT,
+                    VIBRATE_ON_CONNECT_VALIDATOR);
+            VALIDATORS.put(VIBRATE_ON_CALLWAITING,
+                    VIBRATE_ON_CALLWAITING_VALIDATOR);
+            VALIDATORS.put(VIBRATE_ON_DISCONNECT,
+                    VIBRATE_ON_DISCONNECT_VALIDATOR);
             VALIDATORS.put(VOLUME_ADJUST_SOUNDS_ENABLED,
                     VOLUME_ADJUST_SOUNDS_ENABLED_VALIDATOR);
             VALIDATORS.put(NAV_BUTTONS, NAV_BUTTONS_VALIDATOR);
