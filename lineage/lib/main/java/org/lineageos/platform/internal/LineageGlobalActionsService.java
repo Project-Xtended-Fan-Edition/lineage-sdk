@@ -8,7 +8,6 @@ package org.lineageos.platform.internal;
 import static lineageos.providers.LineageSettings.Secure.POWER_MENU_ACTIONS;
 import static lineageos.providers.LineageSettings.Secure.getStringForUser;
 import static lineageos.providers.LineageSettings.Secure.putStringForUser;
-import static org.lineageos.internal.util.PowerMenuConstants.GLOBAL_ACTION_KEY_BUGREPORT;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -52,26 +51,15 @@ public class LineageGlobalActionsService extends LineageSystemService {
 
     private class GlobalActionsSettingsObserver extends ContentObserver {
 
-        private final Uri BUGREPORT_URI =
-                Settings.Global.getUriFor(Settings.Global.BUGREPORT_IN_POWER_MENU);
-
         public GlobalActionsSettingsObserver(Context context, Handler handler) {
             super(handler);
         }
 
         public void observe(boolean enabled) {
-            if (enabled) {
-                mContentResolver.registerContentObserver(BUGREPORT_URI, false, this);
-            } else {
-                mContentResolver.unregisterContentObserver(this);
-            }
         }
 
         @Override
         public void onChange(boolean selfChange) {
-            updateUserConfigInternal(Settings.Global.getInt(mContentResolver,
-                    Settings.Global.BUGREPORT_IN_POWER_MENU, 0) == 1,
-                    GLOBAL_ACTION_KEY_BUGREPORT);
         }
     };
 
