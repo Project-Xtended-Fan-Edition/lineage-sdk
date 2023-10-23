@@ -55,16 +55,16 @@ public class LongScreen {
         return mApps;
     }
 
-    public void addApp(String packageName) {
+    public void addApp(String packageName, int userId) {
         mApps.add(packageName);
-        LineageSettings.System.putString(mContext.getContentResolver(),
-                LineageSettings.System.LONG_SCREEN_APPS, String.join(",", mApps));
+        LineageSettings.System.putStringForUser(mContext.getContentResolver(),
+                LineageSettings.System.LONG_SCREEN_APPS, String.join(",", mApps), userId);
     }
 
-    public void removeApp(String packageName) {
+    public void removeApp(String packageName, int userId) {
         mApps.remove(packageName);
-        LineageSettings.System.putString(mContext.getContentResolver(),
-                LineageSettings.System.LONG_SCREEN_APPS, String.join(",", mApps));
+        LineageSettings.System.putStringForUser(mContext.getContentResolver(),
+                LineageSettings.System.LONG_SCREEN_APPS, String.join(",", mApps), userId);
     }
 
     public void setApps(Set<String> apps) {
