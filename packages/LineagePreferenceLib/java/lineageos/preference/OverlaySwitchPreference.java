@@ -41,7 +41,6 @@ public class OverlaySwitchPreference extends SelfRemovingSwitchPreference {
     private static final String DKEY = "dkey";
     private static final String DKEY_NIGHT_ONLY = "dkeyNightOnly";
 
-
     private final String mDisableKey;
     private final boolean mDKeyNightOnly;
     private final OverlayManager mOverlayManager;
@@ -55,6 +54,9 @@ public class OverlaySwitchPreference extends SelfRemovingSwitchPreference {
 
     public OverlaySwitchPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mDisableKey = attrs.getAttributeValue(SETTINGSNS, DKEY);
+        mDKeyNightOnly = attrs.getAttributeBooleanValue(SETTINGSNS, DKEY_NIGHT_ONLY, false);
+        mOverlayManager = context.getSystemService(OverlayManager.class);
     }
 
     public OverlaySwitchPreference(Context context) {
