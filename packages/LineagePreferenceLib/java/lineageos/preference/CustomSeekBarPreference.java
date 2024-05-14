@@ -33,7 +33,7 @@ import android.widget.Toast;
 
 import lineageos.preference.R;
 
-public class CustomSeekBarPreference extends Preference implements SeekBar.OnSeekBarChangeListener,
+public class CustomSeekBarPreference extends SelfRemovingPreference implements SeekBar.OnSeekBarChangeListener,
         View.OnClickListener, View.OnLongClickListener {
     protected final String TAG = getClass().getName();
     private static final String SETTINGS_NS = "http://schemas.android.com/apk/res/com.android.settings";
