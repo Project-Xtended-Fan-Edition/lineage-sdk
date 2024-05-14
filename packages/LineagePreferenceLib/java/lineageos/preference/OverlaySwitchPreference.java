@@ -30,34 +30,29 @@ import android.os.UserHandle;
 import android.util.AttributeSet;
 import android.util.Log;
 
-import androidx.preference.SwitchPreference;
-
 import java.lang.SecurityException;
 import java.util.List;
 
-public class OverlaySwitchPreference extends SwitchPreference {
+public class OverlaySwitchPreference extends SelfRemovingSwitchPreference {
+
     private final static String TAG = "OverlaySwitchPreference";
     private final static String SETTINGSNS = "http://schemas.android.com/apk/res-auto";
 
     private final String mDisableKey;
     private final OverlayManager mOverlayManager;
 
-    public OverlaySwitchPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+    public OverlaySwitchPreference(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
         mDisableKey = attrs.getAttributeValue(SETTINGSNS, "dkey");
         mOverlayManager = context.getSystemService(OverlayManager.class);
     }
 
-    public OverlaySwitchPreference(Context context, AttributeSet attrs, int defStyleAttr) {
-        this(context, attrs, defStyleAttr, 0);
-    }
-
     public OverlaySwitchPreference(Context context, AttributeSet attrs) {
-        this(context, attrs, com.android.internal.R.attr.switchPreferenceStyle);
+        super(context, attrs);
     }
 
     public OverlaySwitchPreference(Context context) {
-        this(context, null);
+        super(context, null);
     }
 
     @Override
