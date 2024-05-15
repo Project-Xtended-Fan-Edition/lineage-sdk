@@ -38,13 +38,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import lineageos.preference.R;
+import lineageos.preference.SelfRemovingPreference;
 
 /**
  * A preference type that allows a user to choose a time
  *
  * @author Sergey Margaritov
  */
-public class ColorPickerPreference extends Preference implements
+public class ColorPickerPreference extends SelfRemovingPreference implements
         Preference.OnPreferenceClickListener, ColorPickerDialog.OnColorChangedListener {
 
     PreferenceViewHolder mView;
@@ -74,6 +75,11 @@ public class ColorPickerPreference extends Preference implements
 
     public ColorPickerPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init(context, attrs);
+    }
+
+    public ColorPickerPreference(Context context, AttributeSet attrs, int defStyle, int defStyleRes) {
+        super(context, attrs, defStyle, defStyleRes);
         init(context, attrs);
     }
 
