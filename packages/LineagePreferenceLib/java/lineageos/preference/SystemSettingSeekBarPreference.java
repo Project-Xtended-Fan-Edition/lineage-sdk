@@ -19,26 +19,71 @@ package lineageos.preference;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import androidx.preference.PreferenceDataStore;
+
 public class SystemSettingSeekBarPreference extends CustomSeekBarPreference {
 
     public SystemSettingSeekBarPreference(Context context, AttributeSet attrs, int defStyle, int defStyleRes) {
         super(context, attrs, defStyle, defStyleRes);
-        setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
+        setPreferenceDataStore(new DataStore());
     }
 
     public SystemSettingSeekBarPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
+        setPreferenceDataStore(new DataStore());
     }
 
     public SystemSettingSeekBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
+        setPreferenceDataStore(new DataStore());
     }
 
     public SystemSettingSeekBarPreference(Context context) {
         super(context, null);
-        setPreferenceDataStore(new SystemSettingsStore(context.getContentResolver()));
+        setPreferenceDataStore(new DataStore());
+    }
+
+    private class DataStore extends PreferenceDataStore {
+        @Override
+        public float getFloat(String key, float defValue) {
+            return Settings.System.getFloat(getContext().getContentResolver(), key, defValue);
+        }
+
+        @Override
+        public int getInt(String key, int defValue) {
+            return Settings.System.getInt(getContext().getContentResolver(), key, defValue);
+        }
+
+        @Override
+        public long getLong(String key, long defValue) {
+            return Settings.System.getLong(getContext().getContentResolver(), key, defValue);
+        }
+
+        @Override
+        public String getString(String key, String defValue) {
+            String result = Settings.System.getString(getContext().getContentResolver(), key);
+            return result == null ? defValue : result;
+        }
+
+        @Override
+        public void putFloat(String key, float value) {
+            Settings.System.putFloat(getContext().getContentResolver(), key, value);
+        }
+
+        @Override
+        public void putInt(String key, int value) {
+            Settings.System.putInt(getContext().getContentResolver(), key, value);
+        }
+
+        @Override
+        public void putLong(String key, long value) {
+            Settings.System.putLong(getContext().getContentResolver(), key, value);
+        }
+
+        @Override
+        public void putString(String key, String value) {
+            Settings.System.putString(getContext().getContentResolver(), key, value);
+        }
     }
 
 }
