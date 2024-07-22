@@ -12,7 +12,9 @@
      limitations under the License.
 -->
 
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"
+    xmlns:androidprv="http://schemas.android.com/apk/prv/res/android">
+
     <!-- ColorPicker -->
     <color name="list_background_pressed">#ff555555</color>
     <color name="transparent">#00000000</color>
@@ -31,4 +33,6 @@
 
     <color name="disabled_text_color">#66000000</color>
 
+    <!-- Search bar background color -->
+    <color name="search_bar_background">?androidprv:attr/materialColorSurfaceBright</color>
 </resources>
