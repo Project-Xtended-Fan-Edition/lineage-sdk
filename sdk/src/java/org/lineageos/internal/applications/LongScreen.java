@@ -23,32 +23,19 @@ public class LongScreen {
     private Set<String> mApps = new HashSet<>();
     private Context mContext;
 
-    private final boolean mLongScreenAvailable;
-
     public LongScreen(Context context) {
         mContext = context;
         final Resources resources = mContext.getResources();
-
-        mLongScreenAvailable = resources.getBoolean(
-                org.lineageos.platform.internal.R.bool.config_haveHigherAspectRatioScreen);
-
-        if (!mLongScreenAvailable) {
-            return;
-        }
 
         SettingsObserver observer = new SettingsObserver(
                 new Handler(Looper.getMainLooper()));
         observer.observe();
     }
 
-    public boolean isSupported() {
-        return mLongScreenAvailable;
-    }
-
     public boolean shouldForceLongScreen(String packageName) {
-        return isSupported() && (mApps.contains(packageName)
+        return mApps.contains(packageName)
                         || packageName.contains("dialer")
-                        || packageName.contains("android.settings"));
+                        || packageName.contains("android.settings");
     }
 
     public Set<String> getApps() {
