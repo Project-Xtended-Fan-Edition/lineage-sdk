@@ -1101,9 +1101,6 @@ public final class LineageSettings {
          * 15 - Notifications
          * 16 - Toggle Qs Panel
          * 17 - Ringer Modes
-         * 18 - Power Menu
-         * 19 - Go forward
-         * 20 - Partial Screenshot
          */
         public static final String KEY_HOME_LONG_PRESS_ACTION = "key_home_long_press_action";
 
@@ -1231,6 +1228,16 @@ public final class LineageSettings {
 
         /** @hide */
         public static final Validator KEY_APP_SWITCH_LONG_PRESS_ACTION_VALIDATOR =
+                new InclusiveIntegerRangeValidator(0, 20);
+
+        /**
+         * Action to perform when three fingers swipe action is detected. (Default is 0)
+         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+         */
+        public static final String KEY_THREE_FINGERS_SWIPE_ACTION = "key_three_fingers_swipe_action";
+
+        /** @hide */
+        public static final Validator KEY_THREE_FINGERS_SWIPE_ACTION_VALIDATOR =
                 new InclusiveIntegerRangeValidator(0, 20);
 
         /**
@@ -2143,6 +2150,7 @@ public final class LineageSettings {
             VALIDATORS.put(KEY_APP_SWITCH_ACTION, KEY_APP_SWITCH_ACTION_VALIDATOR);
             VALIDATORS.put(KEY_APP_SWITCH_LONG_PRESS_ACTION,
                     KEY_APP_SWITCH_LONG_PRESS_ACTION_VALIDATOR);
+            VALIDATORS.put(KEY_THREE_FINGERS_SWIPE_ACTION, KEY_THREE_FINGERS_SWIPE_ACTION_VALIDATOR);
             VALIDATORS.put(HOME_WAKE_SCREEN, HOME_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(ASSIST_WAKE_SCREEN, ASSIST_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(APP_SWITCH_WAKE_SCREEN, APP_SWITCH_WAKE_SCREEN_VALIDATOR);
