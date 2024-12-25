@@ -12,6 +12,7 @@ android_library {
     static_libs: [
         "androidx.preference_preference",
         "SettingsLibMainSwitchPreference",
+        "SettingsLibPreference",
         "org.lineageos.platform",
     ],
 
