@@ -17,6 +17,7 @@
 package lineageos.preference;
 
 import android.content.Context;
+import android.provider.Settings;
 import android.util.AttributeSet;
 
 import androidx.preference.PreferenceDataStore;
