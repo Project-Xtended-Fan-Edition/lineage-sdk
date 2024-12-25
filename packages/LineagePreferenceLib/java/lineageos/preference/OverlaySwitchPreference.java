@@ -60,33 +60,38 @@ public class OverlaySwitchPreference extends SelfRemovingSwitchPreference {
     }
 
     public OverlaySwitchPreference(Context context) {
-        super(context, null);
+        this(context, null);
     }
 
     @Override
-    public void onAttached() {
-        super.onAttached();
-        if (mOverlayManager == null) return;
+    protected boolean isPersisted() {
+        return true;
+    }
+
+    @Override
+    protected boolean getBoolean(String key, boolean defaultValue) {
+        if (mOverlayManager == null) return false;
         OverlayInfo info = null;
         info = mOverlayManager.getOverlayInfo(getOverlayID(getKey()), CURRENT);
-        if (info != null) setChecked(info.isEnabled());
+        if (info != null) return info.isEnabled();
+        return false;
     }
 
     @Override
-    public void setChecked(boolean checked) {
+    protected void putBoolean(String key, boolean value) {
         if (mOverlayManager == null) return;
         OverlayManagerTransaction.Builder transaction = new OverlayManagerTransaction.Builder();
-        transaction.setEnabled(getOverlayID(getKey()), checked, USER_CURRENT);
+        transaction.setEnabled(getOverlayID(getKey()), value, USER_CURRENT);
         if (mDisableKey != null && !mDisableKey.isEmpty()) {
             if (mDKeyNightOnly) {
                 final boolean isNight = (getContext().getResources().getConfiguration().uiMode
                     & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
                 if (isNight)
-                    transaction.setEnabled(getOverlayID(mDisableKey), !checked, USER_CURRENT);
+                    transaction.setEnabled(getOverlayID(mDisableKey), !value, USER_CURRENT);
                 else // always enabled in day
                     transaction.setEnabled(getOverlayID(mDisableKey), true, USER_CURRENT);
             } else {
-                transaction.setEnabled(getOverlayID(mDisableKey), !checked, USER_CURRENT);
+                transaction.setEnabled(getOverlayID(mDisableKey), !value, USER_CURRENT);
             }
         }
         try {
@@ -96,7 +101,6 @@ public class OverlaySwitchPreference extends SelfRemovingSwitchPreference {
             e.printStackTrace();
             return;
         }
-        super.setChecked(checked);
     }
 
     private OverlayIdentifier getOverlayID(String name) throws IllegalStateException {
