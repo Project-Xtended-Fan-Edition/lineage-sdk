@@ -111,3 +111,17 @@ java_library {
         local_include_dirs: ["sdk/src/java"],
     },
 }
+
+// Resources only target for use by core
+// ============================================================
+
+java_library {
+    name: "org.lineageos.platform.resources",
+
+    srcs: [
+        // For the generated R.java and Manifest.java
+        ":org.lineageos.platform-res{.aapt.srcjar}",
+    ],
+
+    sdk_version: "core_current",
+}
