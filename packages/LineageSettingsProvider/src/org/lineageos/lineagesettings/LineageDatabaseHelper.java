@@ -305,26 +305,6 @@ public class LineageDatabaseHelper extends SQLiteOpenHelper{
             upgradeVersion = 20;
         }
 
-        if (upgradeVersion < 21) {
-            // Migrate tethering allow VPN upstreams setting back to AOSP
-            SQLiteStatement stmt = null;
-            try {
-                stmt = db.compileStatement("SELECT value FROM secure WHERE name=?");
-                stmt.bindString(1, Settings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS);
-                long value = stmt.simpleQueryForLong();
-
-                if (value != 0) {
-                    Settings.Secure.putInt(mContext.getContentResolver(),
-                            Settings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS, (int) value);
-                }
-            } catch (SQLiteDoneException ex) {
-                // LineageSettings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS is not set
-            } finally {
-                if (stmt != null) stmt.close();
-            }
-            upgradeVersion = 21;
-        }
-
         // *** Remember to update DATABASE_VERSION above!
         if (upgradeVersion != newVersion) {
             Log.wtf(TAG, "warning: upgrading settings database to version "
