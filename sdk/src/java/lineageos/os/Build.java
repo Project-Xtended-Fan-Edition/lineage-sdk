@@ -46,7 +46,7 @@ public class Build {
          * Will return 0 if the device does not support the Lineage SDK.
          */
         public static final int SDK_INT = SystemProperties.getInt(
-                "ro.lineage.build.version.plat.sdk", 0);
+                "ro.custom.build.version.plat.sdk", 0);
     }
 
     /**
