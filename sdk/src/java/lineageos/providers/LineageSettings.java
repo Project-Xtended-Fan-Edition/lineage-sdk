@@ -1062,6 +1062,16 @@ public final class LineageSettings {
                 sBooleanValidator;
 
         /**
+         * boolean value. whether to show floating rotation button
+         * @hide
+         */
+        public static final String ENABLE_FLOATING_ROTATION_BUTTON = "enable_floating_rotation_button";
+
+        /** @hide */
+        public static final Validator ENABLE_FLOATING_ROTATION_BUTTON_VALIDATOR =
+                sBooleanValidator;
+
+        /**
          * boolean value. toggles swipe up hint in gestural nav mode
          */
         public static final String NAVIGATION_BAR_HINT = "navigation_bar_hint";
@@ -2115,6 +2125,8 @@ public final class LineageSettings {
             VALIDATORS.put(NAV_BUTTONS, NAV_BUTTONS_VALIDATOR);
             VALIDATORS.put(NAVIGATION_BAR_MENU_ARROW_KEYS,
                     NAVIGATION_BAR_MENU_ARROW_KEYS_VALIDATOR);
+            VALIDATORS.put(ENABLE_FLOATING_ROTATION_BUTTON,
+                    ENABLE_FLOATING_ROTATION_BUTTON_VALIDATOR);
             VALIDATORS.put(NAVIGATION_BAR_HINT, NAVIGATION_BAR_HINT_VALIDATOR);
             VALIDATORS.put(KEY_BACK_LONG_PRESS_ACTION, KEY_BACK_LONG_PRESS_ACTION_VALIDATOR);
             VALIDATORS.put(KEY_HOME_LONG_PRESS_ACTION, KEY_HOME_LONG_PRESS_ACTION_VALIDATOR);
