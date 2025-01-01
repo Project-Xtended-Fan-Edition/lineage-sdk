@@ -31,6 +31,7 @@ public class ActionUtils {
     private static final boolean DEBUG = false;
     private static final String TAG = ActionUtils.class.getSimpleName();
     private static final String SYSTEMUI_PACKAGE = "com.android.systemui";
+    private static final String FRAMEWORK_PACKAGE = "android";
 
     /**
      * Kills the top most / most recent user application, but leaves out the launcher.
@@ -121,12 +122,14 @@ public class ActionUtils {
 
         for (int i = 1; i < tasks.size(); i++) {
             ActivityManager.RecentTaskInfo task = tasks.get(i);
-            if (task.origActivity != null) {
+            if (task != null && task.origActivity != null) {
                 task.baseIntent.setComponent(task.origActivity);
             }
             String packageName = task.baseIntent.getComponent().getPackageName();
-            if (!packageName.equals(defaultHomePackage)
-                    && !packageName.equals(SYSTEMUI_PACKAGE)) {
+            if (packageName != null
+                    && !packageName.equals(defaultHomePackage)
+                    && !packageName.equals(SYSTEMUI_PACKAGE)
+                    && !packageName.equals(FRAMEWORK_PACKAGE)) {
                 return task;
             }
         }
@@ -160,7 +163,7 @@ public class ActionUtils {
         final ResolveInfo launcherInfo = pm.resolveActivityAsUser(launcherIntent, 0, userId);
 
         if (launcherInfo.activityInfo != null &&
-                !launcherInfo.activityInfo.packageName.equals("android")) {
+                !launcherInfo.activityInfo.packageName.equals(FRAMEWORK_PACKAGE)) {
             return launcherInfo.activityInfo.packageName;
         }
 
