@@ -2906,31 +2906,21 @@ public final class LineageSettings {
         public static final String LOCK_SCREEN_BLUR_ENABLED = "lock_screen_blur_enabled";
 
         /**
+         * Network traffic indicator
+         * 0 = Disabled
+         * 1 = Enabled
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_ENABLED = "network_traffic_enabled";
+
+        /**
          * Network traffic indicator mode
-         * 0 = Don't show network traffic indicator
+         * 0 = Display both up- and down-stream traffic
          * 1 = Display up-stream traffic only
          * 2 = Display down-stream traffic only
-         * 3 = Display both up- and down-stream traffic
          * @hide
          */
         public static final String NETWORK_TRAFFIC_MODE = "network_traffic_mode";
-
-        /** @hide */
-        public static final Validator NETWORK_TRAFFIC_MODE_VALIDATOR =
-                new InclusiveIntegerRangeValidator(0, 3);
-
-        /**
-         * Network traffic indicator position
-         * 0 = Start side
-         * 1 = Center
-         * 2 = End side
-         * @hide
-         */
-        public static final String NETWORK_TRAFFIC_POSITION = "network_traffic_position";
-
-        /** @hide */
-        public static final Validator NETWORK_TRAFFIC_POSITION_VALIDATOR =
-                new InclusiveIntegerRangeValidator(0, 2);
 
         /**
          * Whether or not to hide the network traffic indicator when there is no activity
@@ -2938,36 +2928,29 @@ public final class LineageSettings {
          */
         public static final String NETWORK_TRAFFIC_AUTOHIDE = "network_traffic_autohide";
 
-        /** @hide */
-        public static final Validator NETWORK_TRAFFIC_AUTOHIDE_VALIDATOR = sBooleanValidator;
+        /**
+         * Threshold below which network traffic would be hidden
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
 
         /**
          * Measurement unit preference for network traffic
-         * 0 = kBit/s
-         * 1 = MBit/s
-         * 2 = kByte/s
-         * 3 = MByte/s
-         * 4 = automatic kByte/s or MByte/s
          * @hide
          */
         public static final String NETWORK_TRAFFIC_UNITS = "network_traffic_units";
 
-        /** @hide */
-        public static final Validator NETWORK_TRAFFIC_UNITS_VALIDATOR =
-                new InclusiveIntegerRangeValidator(0, 4);
-
         /**
-         * How to show measurement units in the network traffic indiciator
-         * 0 = off
-         * 1 = on
-         * 2 = compact
+         * Specify refresh duration for network traffic
          * @hide
          */
-        public static final String NETWORK_TRAFFIC_SHOW_UNITS = "network_traffic_show_units";
+        public static final String NETWORK_TRAFFIC_REFRESH_INTERVAL = "network_traffic_refresh_interval";
 
-        /** @hide */
-        public static final Validator NETWORK_TRAFFIC_SHOW_UNITS_VALIDATOR =
-                new InclusiveIntegerRangeValidator(0, 2);
+        /**
+         * Whether to hide arrows for network traffic
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_HIDEARROW = "network_traffic_hidearrow";
 
         /**
          * Trust warnings status
@@ -3023,11 +3006,6 @@ public final class LineageSettings {
         static {
             VALIDATORS.put(BERRY_BLACK_THEME, BERRY_BLACK_THEME_VALIDATOR);
             VALIDATORS.put(GESTURE_BACK_EXCLUDE_TOP, GESTURE_BACK_EXCLUDE_TOP_VALIDATOR);
-            VALIDATORS.put(NETWORK_TRAFFIC_MODE, NETWORK_TRAFFIC_MODE_VALIDATOR);
-            VALIDATORS.put(NETWORK_TRAFFIC_POSITION, NETWORK_TRAFFIC_POSITION_VALIDATOR);
-            VALIDATORS.put(NETWORK_TRAFFIC_AUTOHIDE, NETWORK_TRAFFIC_AUTOHIDE_VALIDATOR);
-            VALIDATORS.put(NETWORK_TRAFFIC_UNITS, NETWORK_TRAFFIC_UNITS_VALIDATOR);
-            VALIDATORS.put(NETWORK_TRAFFIC_SHOW_UNITS, NETWORK_TRAFFIC_SHOW_UNITS_VALIDATOR);
             VALIDATORS.put(TRUST_WARNINGS, TRUST_WARNINGS_VALIDATOR);
             VALIDATORS.put(VOLUME_PANEL_ON_LEFT, VOLUME_PANEL_ON_LEFT_VALIDATOR);
         }
